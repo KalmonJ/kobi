@@ -1,0 +1,19 @@
+{
+  "name": "acme",
+  "module": "index.ts",
+  "type": "module",
+  "private": "true",
+  "scripts": {
+    "services": "sudo docker compose up -d"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "extends": "@acme/typescript-config/base.json",
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": ["./*"]
+    }
+  },
+  "include": ["src", "../../env.d.ts"],
+  "exclude": ["build", "dist"]
+}

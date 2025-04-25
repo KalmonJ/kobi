@@ -1,0 +1,23 @@
+{
+  "name": "cli",
+  "version": "1.0.0",
+  "main": "./index.ts",
+  "scripts": {
+    "link": "bun run link"
+  },
+  "bin": {
+    "reviewer": "./index.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@acme/typescript-config": "workspace:*"
+  },
+  "peerDependencies": {
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "inquirer": "^12.5.2",
+    "jsonwebtoken": "^9.0.2",
+    "octokit": "^4.1.3"
+  }
+}

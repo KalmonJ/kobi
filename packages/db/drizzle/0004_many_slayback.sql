@@ -1,0 +1,1 @@
+ALTER TABLE `sessions` ADD `repo` text NOT NULL;

@@ -3,21 +3,26 @@
   "module": "src/index.ts",
   "type": "module",
   "private": true,
+  "scripts": {
+    "generate": "bunx drizzle-kit generate --dialect sqlite --schema ./src/schema.ts",
+    "migrate": "bun run ./src/migrate.ts"
+  },
   "devDependencies": {
-    "@types/bun": "latest",
     "@acme/typescript-config": "workspace:*",
-    "@types/pg": "^8.11.10"
+    "@types/bun": "latest",
+    "@types/pg": "^8.11.13"
   },
   "peerDependencies": {
-    "typescript": "^5.0.0"
+    "typescript": "^5.8.3"
   },
   "dependencies": {
-    "drizzle-kit": "^0.27.0",
-    "drizzle-orm": "^0.36.0",
-    "pg": "^8.13.1"
+    "drizzle-kit": "^0.31.0",
+    "drizzle-orm": "^0.42.0",
+    "pg": "^8.14.1"
   },
   "exports": {
     "./client": "./src/connection.ts",
-    "./schema": "./src/schema.ts"
+    "./schema": "./src/schema.ts",
+    ".": "./src/index.ts"
   }
 }

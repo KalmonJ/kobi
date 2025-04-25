@@ -4,7 +4,7 @@
   "type": "module",
   "private": "true",
   "scripts": {
-    "services": "sudo docker compose up -d"
+    "dev": "bun run --filter=\"*\" dev"
   },
   "devDependencies": {
     "@types/bun": "latest"
@@ -14,6 +14,9 @@
     "packages/*"
   ],
   "peerDependencies": {
-    "typescript": "^5.0.0"
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "wrangler": "^4.13.2"
   }
 }

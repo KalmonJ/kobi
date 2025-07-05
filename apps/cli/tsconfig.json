@@ -1,4 +1,0 @@
-{
-  "extends": "@acme/typescript-config/base.json",
-  "include": ["./core"]
-}

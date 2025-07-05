@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v3
+
+      - name: 🧰 Install Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - name: 📦 Install dependencies
+        run: bun install
+
+      - name: 🧹 Lint backend
+        run: bun run --cwd apps/api lint
+
+      - name: 🧹 Lint frontend
+        run: bun run --cwd apps/web lint
+
+      - name: 🏗️ Build backend
+        run: bun run --cwd apps/api build
+
+      - name: 🏗️ Build frontend
+        run: bun run --cwd apps/web build
+
+      - name: ✅ Test backend
+        run: bun run --cwd apps/api test

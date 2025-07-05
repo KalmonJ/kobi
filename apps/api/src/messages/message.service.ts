@@ -2,8 +2,8 @@ import { Injectable, NotFoundException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { FunnelStage, FunnelStatus, Message } from "./message.entity";
-import { CryptoService } from "../crypto/crypto.service";
-import { RabbitMQService } from "../rabbitmq/rabbitmq.service";
+import { CryptoService } from "src/crypto/crypto.service";
+import { RabbitMQService } from "src/rabbitmq/rabbitmq.service";
 
 @Injectable()
 export class MessageService {

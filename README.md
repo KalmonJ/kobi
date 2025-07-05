@@ -1,43 +1,56 @@
-### Repositório
+## 🧩 Monorepo
 
-Estou usando um monorepo com os seguintes apps:
+Este repositório é um **monorepo** que contém os seguintes aplicativos:
 
-- api (Nestjs)
-- web (Nextjs)
+- **`api`** (NestJS) — Backend da aplicação  
+- **`web`** (Next.js) — Frontend da aplicação
 
-Na api há 3 modulos:
+---
 
-- crypto (pasta):
-  - Responsável pela cryptografia das mensagens enviadas pelo frontend
+## 📦 Estrutura da API
 
-- messages (pasta):
+O backend é composto por três módulos principais:
 
-  message.controller.ts (arquivo):
-  - Responsável por receber as mensagens vindas do frontend e encaminhar parao service
+### 🔐 `crypto/`
 
-  message.service.ts (arquivo):
-  - Responsável por persistir as mensagens no banco de dados e encaminhar para a fila (Rabbitmq)
-  - handlers (pasta):
-    classify-message-handler.ts (arquivo) - Consumidor da fila e classificação do conteúdo da mensagem de acordo com o funil - A classificação da mensagem está sendo feita pelo Gemini do google, porem poderia
-    ser outros modelos.
+Responsável pela criptografia das mensagens enviadas pelo frontend.
 
-- rabbitmq:
-  - Servico que cria um proxy do cliente e enviar mensagem para a fila.
+---
 
-Acredito que muito do que foi feito aqui poderia ser melhor se eu tivesse um pouco mais de tempo.
+### 💬 `messages/`
 
-### Setup do projeto
+Contém a lógica de recepção, persistência e classificação das mensagens.
 
-- Adicionar .env file com a variaveis de ambiente do exemplo .env.example
-- GOOGLE_API_KEY (Opcional) integração com Gemini para classificação real
-- Fallback classificação fake.
+- **`message.controller.ts`**  
+  Responsável por receber as mensagens do frontend e repassá-las para o service.
 
-- Após adicionar as envs:
+- **`message.service.ts`**  
+  Responsável por:
+  - Persistir as mensagens no banco de dados
+  - Encaminhá-las para a fila (RabbitMQ)
 
-rodar:
+- **`handlers/classify-message-handler.ts`**  
+  - Consumidor da fila
+  - Realiza a **classificação automática** do conteúdo da mensagem com base no funil de vendas.  
+    Atualmente utiliza o **Gemini (Google)** como modelo de IA, mas pode ser facilmente substituído por outro provider.
 
-```
- docker compose up -d
-```
+---
 
-- Ou rodar a api diretamente com os seus respectivos comandos dev
+### 🐇 `rabbitmq/`
+
+Serviço que cria um proxy do cliente para enviar as mensagens para a fila do **RabbitMQ**.
+
+---
+
+## ⚙️ Setup do Projeto
+
+1. **Adicione um arquivo `.env`** com as variáveis de ambiente.  
+   Você pode usar o `.env.example` como base.
+
+   - `GOOGLE_API_KEY` — (Opcional) Chave da API do Google para usar o Gemini  
+   - Se não fornecer, será utilizada uma classificação **falsa de fallback**.
+
+2. **Suba os serviços com Docker:**
+
+   ```bash
+   docker compose up -d
